@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss} [%-6p] %C{1}.%M(%F:%L) – %m%n</Property>
+        <Property name="APP_LOG_ROOT">/logs/equityrw_lv</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+
+		<RollingFile
+			  name="mfserror"
+			  fileName="${APP_LOG_ROOT}/MFS_EQUITY_RW_ADOPTER_error.log"
+			  filePattern="${APP_LOG_ROOT}/MFS_EQUITY_RW_ADOPTER_error_%d{MM-dd-yyyy}-%i.log"
+			  ignoreExceptions="false">
+			  <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+			  <Policies>
+				  <SizeBasedTriggeringPolicy size="10 MB" />
+				  <TimeBasedTriggeringPolicy interval ="1"/>
+			  </Policies>
+		</RollingFile>
+
+		<RollingFile
+			  name="mfsinfo"
+			  fileName="${APP_LOG_ROOT}/MFS_EQUITY_RW_ADOPTER_info.log"
+			  filePattern="${APP_LOG_ROOT}/MFS_EQUITY_RW_ADOPTER_info_%d{MM-dd-yyyy}-%i.log"
+			  ignoreExceptions="false">
+			  <LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+			  <PatternLayout pattern="${LOG_PATTERN}"/>
+			  <Policies>
+				   <SizeBasedTriggeringPolicy size="10 MB" />
+				   <TimeBasedTriggeringPolicy interval ="1"/>
+			  </Policies>
+		</RollingFile>
+
+		<RollingFile
+			  name="mfsdebug"
+			  fileName="${APP_LOG_ROOT}/MFS_EQUITY_RW_ADOPTER_debug.log"
+			  filePattern="${APP_LOG_ROOT}/MFS_EQUITY_RW_ADOPTER_debug_%d{MM-dd-yyyy}-%i.log"
+			  ignoreExceptions="false">
+			  <LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+			  <PatternLayout pattern="${LOG_PATTERN}"/>
+			  <Policies>
+				  <SizeBasedTriggeringPolicy size="20 MB" />
+				  <TimeBasedTriggeringPolicy interval ="1"/>
+			  </Policies>
+		</RollingFile>
+
+    </Appenders>
+    <Loggers>
+
+        <Logger name="com.mfs.client.equity" additivity="false">
+            <AppenderRef ref="mfserror"/>
+            <AppenderRef ref="mfsinfo"/>
+        </Logger>
+
+        <Root level="trace">
+            <AppenderRef ref="mfsdebug"/>
+        </Root>
+    </Loggers>
+</Configuration>

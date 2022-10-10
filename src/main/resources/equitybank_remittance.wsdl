@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:tns="http://ws.equitybank/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="TransApply"
+	targetNamespace="http://ws.equitybank/">
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://ws.equitybank/" elementFormDefault="unqualified"
+			targetNamespace="http://ws.equitybank/" version="1.0">
+
+			<xs:element name="tranApplyRequest"
+				type="tns:tranApplyRequest" />
+
+			<xs:element name="tranApplyRequestResponse"
+				type="tns:tranApplyRequestResponse" />
+
+			<xs:element name="tranApplyRequestStatus"
+				type="tns:tranApplyRequestStatus" />
+
+			<xs:element name="tranApplyRequestStatusResponse"
+				type="tns:tranApplyRequestStatusResponse" />
+
+			<xs:complexType name="tranApplyRequestStatus">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="messageID"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="agentID"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="paymentReference1"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="check" type="xs:string" />
+					<xs:element minOccurs="0" name="paymentType"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:complexType name="tranApplyRequestStatusResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:complexType name="tranApplyRequest">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="accountNumber"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="paymentReference1"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="paymentReference2"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="beneficiaryName"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="paymentReference3"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="paymentType"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="remarks"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="agentID"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="check" type="xs:string" />
+					<xs:element minOccurs="0" name="fees" type="xs:decimal" />
+					<xs:element minOccurs="0" name="instCode"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="tranAmount"
+						type="xs:decimal" />
+					<xs:element minOccurs="0" name="data" type="xs:string" />
+					<xs:element minOccurs="0" name="messageID"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="currencyCode"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="countryCode"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="bicCode"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="senderName"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="mobileNumber"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="walletName"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="bankCode"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="branchCode"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="callBackUrl"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="srcAcc" type="xs:string" />
+					<xs:element minOccurs="0" name="senderCountryCode"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:complexType name="tranApplyRequestResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="tranApplyRequest">
+		<wsdl:part element="tns:tranApplyRequest" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="tranApplyRequestStatusResponse">
+		<wsdl:part element="tns:tranApplyRequestStatusResponse"
+			name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="tranApplyRequestStatus">
+		<wsdl:part element="tns:tranApplyRequestStatus"
+			name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="tranApplyRequestResponse">
+		<wsdl:part element="tns:tranApplyRequestResponse"
+			name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="TransApply">
+		<wsdl:operation name="tranApplyRequestStatus">
+			<wsdl:input message="tns:tranApplyRequestStatus"
+				name="tranApplyRequestStatus">
+			</wsdl:input>
+			<wsdl:output message="tns:tranApplyRequestStatusResponse"
+				name="tranApplyRequestStatusResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="tranApplyRequest">
+			<wsdl:input message="tns:tranApplyRequest"
+				name="tranApplyRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:tranApplyRequestResponse"
+				name="tranApplyRequestResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="TransApplySoapBinding"
+		type="tns:TransApply">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="tranApplyRequestStatus">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="tranApplyRequestStatus">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="tranApplyRequestStatusResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="tranApplyRequest">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="tranApplyRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="tranApplyRequestResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="TransApply">
+		<wsdl:port binding="tns:TransApplySoapBinding"
+			name="TransApplyImpPort">
+			<soap:address
+				location="http://10.11.6.110:7002/TransApply" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
